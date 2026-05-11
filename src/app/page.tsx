@@ -4,74 +4,123 @@ export default function GiftCardPage() {
   return (
     <div
       className="h-full min-h-screen flex items-center justify-center"
-      style={{ background: "#080808" }}
+      style={{
+        background:
+          "radial-gradient(ellipse at 50% 40%, #150f08 0%, #080604 100%)",
+      }}
     >
-      {/* Credit-card proportions: 85.6 × 53.98 mm → ~1.586 ratio */}
-      <article
-        className="fade-in relative flex flex-col justify-between rounded-2xl overflow-hidden"
-        style={{
-          width: "min(88vw, 420px)",
-          aspectRatio: "85.6 / 54",
-          background: "linear-gradient(135deg, #111 0%, #1a1410 100%)",
-          border: "1px solid rgba(255,255,255,0.07)",
-          boxShadow: "0 0 0 1px rgba(212,175,55,0.08), 0 32px 64px rgba(0,0,0,0.7)",
-          padding: "6.5% 7%",
-        }}
+      {/* Animated conic-gradient border wrapper */}
+      <div
+        className="card-border card-in rounded-2xl"
+        style={{ width: "min(90vw, 440px)" }}
       >
-        {/* Subtle glow */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
+        {/* Card — 85.6:54 credit card ratio */}
+        <article
+          className="noise relative flex flex-col rounded-2xl overflow-hidden"
           style={{
+            aspectRatio: "85.6 / 54",
             background:
-              "radial-gradient(ellipse at 80% 20%, rgba(212,175,55,0.06) 0%, transparent 60%)",
+              "linear-gradient(145deg, #161208 0%, #1c1508 55%, #120f07 100%)",
+            padding: "4% 5%",
           }}
-        />
-
-        {/* TOP ROW */}
-        <div className="fade-in delay-1 relative flex items-start justify-between">
-          <div className="flex flex-col gap-0.5">
-            <span className="text-[10px] font-medium tracking-[0.18em] uppercase text-white/30">
-              presente especial
-            </span>
-            <span className="text-lg leading-none">🎁</span>
-          </div>
-          <div className="flex items-center gap-1 text-white/40">
-            <span className="text-xs tracking-wide">✈️</span>
-            <span
-              className="text-[11px] font-semibold tracking-widest uppercase"
-              style={{ color: "rgba(212,175,55,0.7)" }}
-            >
-              Madrid
-            </span>
-          </div>
-        </div>
-
-        {/* MIDDLE — date + message */}
-        <div className="fade-in delay-2 relative flex flex-col gap-1">
+        >
+          {/* Ambient glow top-right */}
           <div
-            className="text-3xl font-bold tracking-tight leading-none"
-            style={{ color: "#d4af37", letterSpacing: "-0.02em" }}
-          >
-            06.06
-          </div>
-          <p className="text-[11px] font-light text-white/50 leading-snug max-w-[60%]">
-            algo incrível te espera.<br />
-            fica ansiosa — vai valer cada segundo 🥂
-          </p>
-        </div>
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at 85% 10%, rgba(212,175,55,0.09) 0%, transparent 55%)",
+            }}
+          />
+          {/* Ambient glow bottom-left */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at 10% 90%, rgba(180,120,20,0.06) 0%, transparent 50%)",
+            }}
+          />
 
-        {/* BOTTOM ROW — countdown + chip */}
-        <div className="fade-in delay-3 relative flex items-end justify-between">
-          <Countdown />
-          <span
-            className="text-[10px] font-medium tracking-[0.12em] uppercase"
-            style={{ color: "rgba(212,175,55,0.35)" }}
-          >
-            2026
-          </span>
-        </div>
-      </article>
+          {/* ── TOP ROW ───────────────────────────────── */}
+          <div className="fu d1 relative flex items-center justify-between">
+            <div className="flex items-center gap-1.5">
+              <span className="text-base leading-none">🎁</span>
+              <span
+                className="text-[9px] font-medium tracking-[0.22em] uppercase"
+                style={{ color: "rgba(212,175,55,0.4)" }}
+              >
+                presente especial
+              </span>
+            </div>
+            <div className="flex items-center gap-1">
+              <span className="text-[10px]">✈️</span>
+              <span
+                className="text-[9px] font-bold tracking-[0.2em] uppercase"
+                style={{ color: "rgba(212,175,55,0.65)" }}
+              >
+                Madrid
+              </span>
+            </div>
+          </div>
+
+          {/* ── MIDDLE — fills remaining space ────────── */}
+          <div className="fu d2 relative flex flex-1 flex-col justify-center gap-1.5 mt-2">
+            {/* Date */}
+            <div className="flex items-baseline gap-2">
+              <span
+                className="shimmer font-bold leading-none"
+                style={{ fontSize: "clamp(1.5rem, 5vw, 2rem)" }}
+              >
+                06 de junho
+              </span>
+              <span className="text-[10px]" style={{ color: "rgba(255,255,255,0.2)" }}>
+                — Madrid
+              </span>
+            </div>
+
+            {/* Message */}
+            <p
+              className="text-[10.5px] font-light leading-relaxed"
+              style={{ color: "rgba(255,255,255,0.45)", maxWidth: "78%" }}
+            >
+              fica ansiosa — tem uma surpresa muito especial esperando por
+              você 🥂
+            </p>
+          </div>
+
+          {/* ── BOTTOM ROW ────────────────────────────── */}
+          <div className="fu d3 relative flex items-end justify-between mt-2">
+            {/* Address (like cardholder name) */}
+            <div className="flex flex-col gap-0.5">
+              <span
+                className="text-[8px] font-medium tracking-[0.18em] uppercase"
+                style={{ color: "rgba(212,175,55,0.3)" }}
+              >
+                endereço
+              </span>
+              <span
+                className="text-[10px] font-semibold tracking-wide"
+                style={{ color: "rgba(255,255,255,0.55)" }}
+              >
+                Gran Vía, 32
+              </span>
+            </div>
+
+            {/* Countdown (like expiry) */}
+            <div className="flex flex-col items-end gap-0.5">
+              <span
+                className="text-[8px] font-medium tracking-[0.18em] uppercase"
+                style={{ color: "rgba(212,175,55,0.3)" }}
+              >
+                falta
+              </span>
+              <Countdown />
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   );
 }

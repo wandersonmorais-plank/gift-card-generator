@@ -23,6 +23,13 @@ function pad(n: number) {
   return String(n).padStart(2, "0");
 }
 
+const units = [
+  { key: "days",    l: "d" },
+  { key: "hours",   l: "h" },
+  { key: "minutes", l: "m" },
+  { key: "seconds", l: "s" },
+] as const;
+
 export default function Countdown() {
   const [time, setTime] = useState<TimeLeft | null>(null);
   const secRef = useRef<HTMLSpanElement>(null);
@@ -32,35 +39,38 @@ export default function Countdown() {
     const id = setInterval(() => {
       setTime(getTimeLeft());
       if (secRef.current) {
-        secRef.current.classList.remove("tick");
-        void secRef.current.offsetWidth; // reflow to restart animation
-        secRef.current.classList.add("tick");
+        secRef.current.classList.remove("tick-anim");
+        void secRef.current.offsetWidth;
+        secRef.current.classList.add("tick-anim");
       }
     }, 1000);
     return () => clearInterval(id);
   }, []);
 
-  if (!time) return <div className="h-5" />;
+  if (!time) return null;
 
   const expired = !time.days && !time.hours && !time.minutes && !time.seconds;
-  if (expired) return <span className="text-xs tracking-widest text-amber-400/80">chegou o momento ✨</span>;
+  if (expired) {
+    return (
+      <span className="text-[10px] tracking-widest uppercase" style={{ color: "#d4af37" }}>
+        chegou o momento ✨
+      </span>
+    );
+  }
 
   return (
-    <div className="flex items-center gap-3 tabular-nums">
-      {[
-        { v: time.days,    l: "d" },
-        { v: time.hours,   l: "h" },
-        { v: time.minutes, l: "m" },
-        { v: time.seconds, l: "s", ref: secRef },
-      ].map(({ v, l, ref }) => (
-        <div key={l} className="flex items-baseline gap-0.5">
+    <div className="flex items-baseline gap-2.5 tabular-nums">
+      {units.map(({ key, l }) => (
+        <div key={key} className="flex items-baseline gap-[2px]">
           <span
-            ref={ref as React.RefObject<HTMLSpanElement>}
-            className="text-sm font-semibold text-white"
+            ref={key === "seconds" ? secRef : undefined}
+            className="text-[11px] font-semibold text-white/90"
           >
-            {pad(v)}
+            {pad(time[key])}
           </span>
-          <span className="text-[10px] text-white/30 font-normal">{l}</span>
+          <span className="text-[9px] font-normal" style={{ color: "rgba(212,175,55,0.45)" }}>
+            {l}
+          </span>
         </div>
       ))}
     </div>
