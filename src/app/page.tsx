@@ -121,7 +121,7 @@ export default function GiftCardPage() {
               className="fu d3 text-[11px] font-light leading-[1.7]"
               style={{ color: "rgba(255,240,210,0.62)", maxWidth: "72%" }}
             >
-              você tem uma surpresa muito especial esperando — e eu mal posso
+              você tem uma surpresa muito especial esperando e eu mal posso
               esperar pra ver sua reação 🥂
             </p>
           </div>
