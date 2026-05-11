@@ -2,169 +2,76 @@ import Countdown from "@/components/Countdown";
 
 export default function GiftCardPage() {
   return (
-    <main
-      className="min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden"
-      style={{
-        background: "linear-gradient(135deg, #0d0a0a 0%, #1a0e1a 40%, #0d0a12 100%)",
-      }}
+    <div
+      className="h-full min-h-screen flex items-center justify-center"
+      style={{ background: "#080808" }}
     >
-      {/* Decorative background orbs */}
-      <div
-        aria-hidden
-        className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] rounded-full pointer-events-none"
+      {/* Credit-card proportions: 85.6 × 53.98 mm → ~1.586 ratio */}
+      <article
+        className="fade-in relative flex flex-col justify-between rounded-2xl overflow-hidden"
         style={{
-          background: "radial-gradient(circle, rgba(139, 69, 100, 0.2) 0%, transparent 70%)",
-          filter: "blur(60px)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] rounded-full pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%)",
-          filter: "blur(60px)",
-        }}
-      />
-
-      {/* Card */}
-      <div
-        className="relative w-full max-w-2xl rounded-3xl p-8 sm:p-12 md:p-16 animate-fade-in-up"
-        style={{
-          background: "rgba(255, 255, 255, 0.03)",
-          border: "1px solid rgba(212, 175, 55, 0.2)",
-          backdropFilter: "blur(20px)",
-          boxShadow:
-            "0 0 0 1px rgba(212,175,55,0.05), 0 40px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05)",
+          width: "min(88vw, 420px)",
+          aspectRatio: "85.6 / 54",
+          background: "linear-gradient(135deg, #111 0%, #1a1410 100%)",
+          border: "1px solid rgba(255,255,255,0.07)",
+          boxShadow: "0 0 0 1px rgba(212,175,55,0.08), 0 32px 64px rgba(0,0,0,0.7)",
+          padding: "6.5% 7%",
         }}
       >
-        {/* Top ornament */}
-        <div className="flex items-center justify-center mb-8 animate-float">
-          <span className="text-5xl sm:text-6xl" role="img" aria-label="presente">
-            🎁
-          </span>
-        </div>
+        {/* Subtle glow */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 80% 20%, rgba(212,175,55,0.06) 0%, transparent 60%)",
+          }}
+        />
 
-        {/* Decorative divider */}
-        <div className="flex items-center gap-3 mb-8 opacity-50">
-          <div
-            className="h-px flex-1"
-            style={{ background: "linear-gradient(to right, transparent, #d4af37)" }}
-          />
-          <span style={{ color: "#d4af37" }}>✦</span>
-          <div
-            className="h-px flex-1"
-            style={{ background: "linear-gradient(to left, transparent, #d4af37)" }}
-          />
-        </div>
-
-        {/* Main heading */}
-        <h1
-          className="text-center text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight animate-fade-in-up delay-100"
-          style={{ fontFamily: "var(--font-playfair)" }}
-        >
-          <span className="animate-shimmer">Um Presente Muito Especial</span>
-        </h1>
-
-        {/* Gift message */}
-        <div className="space-y-5 text-center animate-fade-in-up delay-200">
-          <p
-            className="text-lg sm:text-xl leading-relaxed"
-            style={{
-              color: "rgba(255, 245, 220, 0.9)",
-              fontFamily: "var(--font-lato)",
-              fontWeight: 300,
-            }}
-          >
-            Olha, você tem um presente esperando por você — e pode ter certeza
-            que é algo muito especial mesmo.
-          </p>
-
-          <p
-            className="text-lg sm:text-xl leading-relaxed"
-            style={{
-              color: "rgba(255, 245, 220, 0.9)",
-              fontFamily: "var(--font-lato)",
-              fontWeight: 300,
-            }}
-          >
-            No dia{" "}
-            <span
-              className="font-semibold"
-              style={{ color: "#d4af37", fontFamily: "var(--font-playfair)" }}
-            >
-              06 de junho
+        {/* TOP ROW */}
+        <div className="fade-in delay-1 relative flex items-start justify-between">
+          <div className="flex flex-col gap-0.5">
+            <span className="text-[10px] font-medium tracking-[0.18em] uppercase text-white/30">
+              presente especial
             </span>
-            , em plena{" "}
+            <span className="text-lg leading-none">🎁</span>
+          </div>
+          <div className="flex items-center gap-1 text-white/40">
+            <span className="text-xs tracking-wide">✈️</span>
             <span
-              className="font-semibold"
-              style={{ color: "#d4af37", fontFamily: "var(--font-playfair)" }}
+              className="text-[11px] font-semibold tracking-widest uppercase"
+              style={{ color: "rgba(212,175,55,0.7)" }}
             >
               Madrid
             </span>
-            , sua surpresa vai ser revelada. Guarda esse momento com carinho —
-            porque ele foi pensado com muito amor.
-          </p>
+          </div>
+        </div>
 
-          <p
-            className="text-base sm:text-lg italic"
-            style={{
-              color: "rgba(212, 175, 55, 0.7)",
-              fontFamily: "var(--font-playfair)",
-            }}
+        {/* MIDDLE — date + message */}
+        <div className="fade-in delay-2 relative flex flex-col gap-1">
+          <div
+            className="text-3xl font-bold tracking-tight leading-none"
+            style={{ color: "#d4af37", letterSpacing: "-0.02em" }}
           >
-            Espero que você esteja tão ansiosa quanto eu estou animado. 🥂
+            06.06
+          </div>
+          <p className="text-[11px] font-light text-white/50 leading-snug max-w-[60%]">
+            algo incrível te espera.<br />
+            fica ansiosa — vai valer cada segundo 🥂
           </p>
         </div>
 
-        {/* Decorative divider */}
-        <div className="flex items-center gap-3 my-10 opacity-40">
-          <div
-            className="h-px flex-1"
-            style={{ background: "linear-gradient(to right, transparent, #d4af37)" }}
-          />
-          <span style={{ color: "#d4af37" }}>❧</span>
-          <div
-            className="h-px flex-1"
-            style={{ background: "linear-gradient(to left, transparent, #d4af37)" }}
-          />
-        </div>
-
-        {/* Countdown section */}
-        <div className="animate-fade-in-up delay-400">
-          <p
-            className="text-center text-sm uppercase tracking-[0.3em] mb-6"
-            style={{
-              color: "rgba(212, 175, 55, 0.6)",
-              fontFamily: "var(--font-lato)",
-            }}
-          >
-            Faltam apenas
-          </p>
+        {/* BOTTOM ROW — countdown + chip */}
+        <div className="fade-in delay-3 relative flex items-end justify-between">
           <Countdown />
-          <p
-            className="text-center text-sm mt-6 uppercase tracking-[0.2em]"
-            style={{
-              color: "rgba(212, 175, 55, 0.5)",
-              fontFamily: "var(--font-lato)",
-            }}
+          <span
+            className="text-[10px] font-medium tracking-[0.12em] uppercase"
+            style={{ color: "rgba(212,175,55,0.35)" }}
           >
-            para o grande dia ✨
-          </p>
+            2026
+          </span>
         </div>
-
-        {/* Bottom ornament */}
-        <div className="flex items-center gap-3 mt-10 opacity-30">
-          <div
-            className="h-px flex-1"
-            style={{ background: "linear-gradient(to right, transparent, #d4af37)" }}
-          />
-          <span style={{ color: "#d4af37" }}>♦</span>
-          <div
-            className="h-px flex-1"
-            style={{ background: "linear-gradient(to left, transparent, #d4af37)" }}
-          />
-        </div>
-      </div>
-    </main>
+      </article>
+    </div>
   );
 }
